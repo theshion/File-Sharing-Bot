@@ -56,6 +56,7 @@ async def start_command(client: Client, message: Message):
         await temp_msg.delete()
 
         for msg in messages:
+
             if bool(CUSTOM_CAPTION) & bool(msg.document):
                 caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html,
                                                 filename=msg.document.file_name)
@@ -69,12 +70,12 @@ async def start_command(client: Client, message: Message):
 
             try:
                 await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML,
-                                reply_markup=reply_markup, protect_content=PROTECT_CONTENT)
+                               reply_markup=reply_markup, protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML,
-                                reply_markup=reply_markup, protect_content=PROTECT_CONTENT)
+                               reply_markup=reply_markup, protect_content=PROTECT_CONTENT)
             except:
                 pass
         return
@@ -109,14 +110,22 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
 #=====================================================================================##
 
+
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    channels = ["Channel1", "Channel2", "Channel3", "(©)CodeXBotz"]  # Add your new channel here
     buttons = [
         [
             InlineKeyboardButton(
-                "Join Channel",
-                url=client.invitelink)
+                "Join EonixCore",
+                url="https://t.me/EonixCore"),
+            InlineKeyboardButton(
+                "Join BontenCriminals",
+                url="https://t.me/BontenCriminals")
+        ],
+        [
+            InlineKeyboardButton(
+                "Join AC Anime Group",
+                url="https://t.me/AC_Anime_Group")
         ]
     ]
     try:
@@ -130,25 +139,6 @@ async def not_joined(client: Client, message: Message):
         )
     except IndexError:
         pass
-
-    for channel in channels:
-        buttons.append(
-            [
-                InlineKeyboardButton(
-                    text=f"Join {channel}",
-                    url=f"https://t.me/AC_Anime_Group"
-                )
-            ]
-        )
-
-    buttons.append(
-        [
-            InlineKeyboardButton(
-                text="Join Bot Channel",
-                url=f"https://t.me/{client.username}?start={message.command}"
-            )
-        ]
-    )
 
     await message.reply(
         text=FORCE_MSG.format(
