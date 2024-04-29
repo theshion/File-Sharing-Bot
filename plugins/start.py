@@ -12,19 +12,28 @@ from database.database import add_user, del_user, full_userbase, present_user
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                "Join EonixCore",
-                url=f"https://t.me/{client.username}?start={message.command}0"),
-            InlineKeyboardButton(
-                "Join BontenCriminals",
-                url=f"https://t.me/{client.username}?start={message.command}1"),
-            InlineKeyboardButton(
-                "Join AC Anime Group",
-                url=f"https://t.me/{client.username}?start={message.command}2")
-        ]
-    ]
+    buttons = [
+        [
+            InlineKeyboardButton(
+                "Join EonixCore",
+                url="https://t.me/EonixCore"),
+            InlineKeyboardButton(
+                "Join BontenCriminals",
+                url="https://t.me/BontenCriminals")
+        ],
+        [
+            InlineKeyboardButton(
+                "Join AC Anime Group",
+                url="https://t.me/AC_Anime_Group")
+        ],
+        [
+            InlineKeyboardButton(
+                text='Try Again',
+                url=f"https://t.me/{client.username}?start={message.command[1]}"
+            )
+        ]
+    ]
+`
 
     await message.reply(
         text=FORCE_MSG.format(
