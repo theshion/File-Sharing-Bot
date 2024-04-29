@@ -1,3 +1,12 @@
+# Jishu Developer 
+# Don't Remove Credit 🥺
+# Telegram Channel @Madflix_Bots
+# Backup Channel @JishuBotz
+# Developer @JishuDeveloper
+
+
+
+
 import os
 import asyncio
 from pyrogram import Client, filters, __version__
@@ -15,20 +24,6 @@ from database.database import add_user, del_user, full_userbase, present_user
 SECONDS = int(os.getenv("SECONDS", "600"))
 
 
-class Bot(Client):
-    def __init__(self):
-        super().__init__(
-            "bot",
-            api_id=os.getenv("API_ID"),
-            api_hash=os.getenv("API_HASH"),
-            bot_token=os.getenv("BOT_TOKEN")
-        )
-
-        # Define multiple invite links
-        self.invitelink = os.getenv("INVITE_LINK")
-        self.invitelink2 = os.getenv("INVITE_LINK2")
-        self.invitelink3 = os.getenv("INVITE_LINK3")
-        self.invitelink4 = os.getenv("INVITE_LINK4")
 
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
@@ -231,3 +226,16 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         msg = await message.reply(REPLY_ERROR)
         await asyncio.sleep(8)
         await msg.delete()
+
+
+
+
+
+
+
+
+# Jishu Developer 
+# Don't Remove Credit 🥺
+# Telegram Channel @Madflix_Bots
+# Backup Channel @JishuBotz
+# Developer @JishuDeveloper
