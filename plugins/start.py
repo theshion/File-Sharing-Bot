@@ -15,6 +15,20 @@ from database.database import add_user, del_user, full_userbase, present_user
 SECONDS = int(os.getenv("SECONDS", "600"))
 
 
+class Bot(Client):
+    def __init__(self):
+        super().__init__(
+            "bot",
+            api_id=os.getenv("API_ID"),
+            api_hash=os.getenv("API_HASH"),
+            bot_token=os.getenv("BOT_TOKEN")
+        )
+
+        # Define multiple invite links
+        self.invitelink = os.getenv("INVITE_LINK")
+        self.invitelink2 = os.getenv("INVITE_LINK2", self.invitelink)
+        self.invitelink3 = os.getenv("INVITE_LINK3", self.invitelink)
+        self.invitelink4 = os.getenv("INVITE_LINK4", self.invitelink)
 
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
